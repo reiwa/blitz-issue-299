@@ -1,4 +1,5 @@
 import { Head, Link } from "blitz"
+import db from 'db'
 
 const Home = () => (
   <div className="container">
