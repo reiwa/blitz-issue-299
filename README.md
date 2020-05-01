@@ -1,24 +1,63 @@
 # blitz-issue-299
 
-## Getting Started
+```
+$ npx blitz -v
+You are using alpha software - if you have any problems, please open an issue here:
+  https://github.com/blitz-js/blitz/issues/new/choose
 
-1. Ensure you have Postgres installed locally
-2. Set the `DATABASE_URL` environment variable, something like this:
+macOS Catalina | darwin-x64 | Node: v12.11.1
+
+blitz: 0.7.0 (global)
+blitz: 0.7.0 (local)
+
+$ node -v
+v12.11.1
+
+$ which node
+/Users/reiwa/.nodebrew/current/bin/node
+
+$ yarn -v
+1.19.1
+
+$ npx -v
+6.12.0
+```
+
+Run on termial:
 
 ```
-DATABASE_URL=postgresql://<your_computer_username>@localhost:5432/blitz-example-store
+$ npx blitz new blitz-issue-299
+$ cd blitz-issue-299
 ```
 
-3. DB migrate
+Edit `db/schema.prisma`
 
 ```
-blitz db migrate
+model Project {
+  id        Int      @default(autoincrement()) @id
+  name      String
+}
 ```
 
-4. Start the dev server
+Run on terminal:
 
 ```
-blitz start
+$ yarn blitz db migrate
+$ yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Edit `app/pages/index.tsx`
+
+```
+import { Head, Link } from "blitz"
+import db from 'db'
+
+console.log(db)
+```
+
+Get the error message:
+
+```
+[ error ] /Users/reiwa/GitHub/blitz-issue-299/node_modules/@prisma/client/runtime/index.js
+Module not found: Can't resolve 'child_process' in '/Users/reiwa/GitHub/blitz-issue-299/node_modules/@prisma/client/runtime'
+```
